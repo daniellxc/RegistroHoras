@@ -1,0 +1,147 @@
+﻿@{
+    
+    
+    SelectList colaboradores = new SelectList(new RegistroHoras.DATA.classes.business.ColaboradorBO().Find(c=>c.registro.ToString()==User.Identity.Name), "registro", "nome");
+  
+}
+
+@model RegistroHoras.DATA.RegistroHoras
+
+
+
+@section scripts{
+<script src="~/Scripts/jquery-1.9.0.min.js"></script>
+<script src="~/Scripts/jquery.mask.js"></script>
+<script src="~/Scripts/js.js"></script>
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui.js"></script>
+
+
+
+        }
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Dropdownlist Selectedchange event
+
+        $("#colaborador").change(function () {
+
+            if ($("#colaborador").val() == "") {
+                $("#jornada").empty();
+                $("#registro").hide();
+                return false;
+            }
+
+
+            $("#jornada").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("PegarJornadasColaborador")', // we are calling json method
+
+                dataType: 'json',
+
+                data: { registroColaborador: $("#colaborador").val() },
+                // here we are get value of selected country and passing same value
+
+
+                success: function (states) {
+
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+
+                    $.each(states, function (i, state) {
+                        $("#jornada").append('<option value="' + state.Value + '">' +
+                             state.Text + '</option>');
+                        // here we are adding option for States
+
+                    }
+
+                    );
+
+
+                   $("#registro").show();
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+
+
+
+
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#Hora').mask('99:99');
+    });
+
+    $('.clockpicker').clockpicker();
+
+
+    function validar() {
+      
+        if ($("#jornada").val() == null) {
+            alert("Selecione a jornada");
+            return false;
+        }
+        if ($("#Hora").val() == "") {
+            alert("Informe a hora");
+            return false;
+        }
+      
+        
+    };
+</script>
+
+
+
+
+<h2>Registro de horas do colaborador</h2>
+
+
+@using (Html.BeginForm("SalvarRegistroHora","RegistroHoras"))
+{
+
+<div class="form-group">
+    @Html.Label("Selecione um colaborador")
+    @Html.DropDownList("colaborador", colaboradores, "selecione", new { @class = "form-control" })
+    @Html.ValidationMessage("colaborador")
+</div>
+<div class="form-group">
+    @Html.Label("Selecione o turno")
+    @Html.DropDownList("jornada", new SelectList(string.Empty, "Value", "Text"), new { @class = "form-control" })
+    @Html.ValidationMessageFor(m=>m.jornadaColaborador)
+    
+</div>
+
+<div class="form-group">
+    @Html.Label("Data")
+    @Html.TextBox("Data",DateTime.Now.ToShortDateString(),new { @class = "form-control calendario" })
+   
+     @Html.Label("Hora")
+    @Html.TextBox("Hora", "", new { @placeholder="HH:MM", @class="form-control" })
+    @Html.ValidationMessage("Hora")
+
+
+    @Html.Label("Observação (opcional)")
+    @Html.TextBoxFor(m=>m.Observacao, "", new { @placeholder = "observação", @class = "form-control" })
+   
+
+
+
+</div>
+
+
+
+
+    <input id="btnConfirm" type="submit" value="Confirmar" class="btn btn-primary" onclick=" return validar();" />
+}
+
+
+

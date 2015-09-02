@@ -1,0 +1,24 @@
+﻿@using GridMvc.Html
+
+
+
+
+@{
+    ViewBag.Title = "Colaboradores";
+}
+
+<h2>Colaboradores</h2>
+
+@Html.ActionLink("Cadastrar", "Cadastro", "", new {@class="btn btn-primary" })
+
+@Html.Grid(new RegistroHoras.DATA.classes.business.ColaboradorBO().TodosColaboradores()).Columns(c =>
+{
+    c.Add(co => co.nome).Titled("Nome");
+    c.Add(co => co.cpf).Titled("CPF");
+    c.Add(co => co.regimeMensal).Titled("Horas mensais");
+    c.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @Html.ActionLink("jornada", "CadastroJornada","JornadaColaborador", new { registroColaborador = d.registro },""));
+    c.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @Html.ActionLink("horas", "ListarHorasRegistradasColaborador", "RegistroHoras", new { registroColaborador = d.registro }, ""));
+    c.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @Html.ActionLink("editar", "Editar", new { registro = d.registro }));
+    c.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @Html.ActionLink("excluir", "Excluir", new { registro = d.registro }, new {@onclick  = "return Confirm('Deseja realmente excluir este colaborador?')"}));
+})
+

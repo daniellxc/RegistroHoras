@@ -1,0 +1,65 @@
+﻿@model RegistroHoras.DATA.Usuario
+@using GridMvc.Html
+
+<h2>Configurar Usuário</h2>
+
+<div class="row">
+    <div class="col-lg-6">
+
+        <span>Nome:</span> @Model.FK_Colaborador.nome <br />
+        <span>Login:</span> @Model.Login <br />
+        <hr />
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Alterar Senha</h3>
+            </div>
+            <div class="panel-body">
+               <div class="form-group">
+                   @using (Html.BeginForm("AlterarSenha", "Usuario", new { colaborador = Model.COLABORADOR }))
+                   {
+                    <label>Nova senha:</label> @Html.PasswordFor(m => m.Senha)
+                    <input type="submit" value="Alterar senha" class="btn btn-primary" />
+                   }
+                
+               </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Grupos disponíveis</h3>
+            </div>
+            <div class="panel-body">
+              @Html.Grid(new RegistroHoras.DATA.classes.business.GrupoBO().GetGruposDisponiveis(Model.COLABORADOR)).Columns(col =>
+                   {
+                       col.Add(c => c.descricao).Titled("");
+                       col.Add().Encoded(false).Sanitized(false).RenderValueAs(c => @Html.ActionLink("adicionar", "AdicionarGrupoAoUsuario", new { registroGrupo = c.registro, colaborador=Model.COLABORADOR }));
+
+                   }).EmptyText("Nenhum grupo disponível")
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Grupos inseridos</h3>
+            </div>
+            <div class="panel-body">
+                @Html.Grid(Model.Grupos).Columns(col =>
+                   {
+                       col.Add(c => c.descricao).Titled("");
+                       col.Add().Encoded(false).Sanitized(false).RenderValueAs(c => @Html.ActionLink("remover", "RemoverGrupoDoUsuario", new { registroGrupo = c.registro, colaborador=Model.COLABORADOR }));
+
+                   }).EmptyText("Usuário não pertence a nenhum grupo")
+            </div>
+        </div>
+    </div>
+</div>

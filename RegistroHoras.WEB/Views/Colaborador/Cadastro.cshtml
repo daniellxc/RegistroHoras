@@ -1,0 +1,37 @@
+﻿@model RegistroHoras.DATA.Colaborador
+
+<h2>Cadastro de Colaborador</h2>
+
+@using (Html.BeginForm("CadastrarColaborador", "Colaborador"))
+{
+    <div class="row">
+        <fieldset>
+            <div class="form-group">
+                @Html.Label("Nome")
+                @Html.TextBoxFor(c => c.nome, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c=>c.nome)
+            </div>
+            <div class="form-group">
+                @Html.Label("CPF")
+                @Html.TextBoxFor(c => c.cpf, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.cpf)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c=>c.regimeMensal)
+                @Html.TextBoxFor(c => c.regimeMensal, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.cpf)
+            </div>
+
+            @if (Model != null)
+            {
+                @Html.HiddenFor(c => c.registro)
+            }
+
+
+
+            <input type="submit" value="Concluir" class="btn btn-primary" />
+        </fieldset>
+
+    </div>
+}
+

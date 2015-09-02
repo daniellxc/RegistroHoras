@@ -1,0 +1,19 @@
+﻿@model RegistroHoras.DATA.Usuario
+@using GridMvc.Html
+<script src="~/Scripts/js.js"></script>
+<h2>Usuarios</h2>
+
+@Html.ActionLink("Cadastrar", "CadastrarUsuario", "", new {@class="btn btn-primary" })
+
+@Html.Grid(new RegistroHoras.DATA.classes.business.UsuarioBO().GetAll()).Columns(col =>
+{
+    col.Add(d => d.FK_Colaborador.nome).Titled("Nome");
+    col.Add(d => d.Login);
+    col.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @Html.ActionLink("configurar", "ConfigurarUsuario", new { colaborador = d.COLABORADOR }, ""));
+    col.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @Html.ActionLink("excluir", "ExcluirUsuario", new { colaborador = d.COLABORADOR }, new { @onclick = "return Confirm('Deseja realmente excluir este usuário?')" }));
+    
+}).EmptyText("Nenhum usuário cadastrado.")
+
+
+@Html.ActionLink("Voltar", "Index","Home", "", new { @class = "btn btn-primary" })
+

@@ -1,0 +1,47 @@
+﻿@model RegistroHoras.DATA.Colaborador
+
+@{
+ 
+}
+<script src="~/Scripts/jquery-1.8.0.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<h2>Registro de Horas do Colaborador</h2>
+
+
+
+
+@using (Ajax.BeginForm("ConsultarRegistroHorasMes",new {registroColaborador=Model.registro},new AjaxOptions
+{
+    HttpMethod = "GET",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "resultado",
+
+
+}))
+{
+    <div class="row">
+
+        <div class="col-lg-3">
+            <div id="form-group">
+
+                @Html.Label("Listar registros do mês")
+                @Html.DropDownList("Mes", new SelectList(RegistroHoras.WEB.Content.Utils.MesesDoAno(), "Value", "Key"), "---", new { @class = "form-control" })
+             
+            </div>
+
+        </div>
+        <div class="col-lg-1">
+            <br />
+            <input type="submit" value="Consultar" class="btn btn-primary" />
+        </div>
+    </div>
+
+}
+  
+     
+<div id="resultado">
+
+
+</div>
+
+

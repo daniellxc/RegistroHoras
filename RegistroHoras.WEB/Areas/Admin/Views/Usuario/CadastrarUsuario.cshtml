@@ -1,0 +1,39 @@
+﻿@model RegistroHoras.DATA.Usuario
+
+@{
+    SelectList colaboradores = new SelectList(new RegistroHoras.DATA.classes.business.ColaboradorBO().TodosColaboradores(), "registro", "nome");
+}
+
+<h2>Cadastro de Usuarios</h2>
+
+@using (Html.BeginForm("SalvarUsuario", "Usuario"))
+{
+    <div class="form-group">
+
+        @Html.Label("Colaborador")
+        @Html.DropDownListFor(u => u.COLABORADOR, colaboradores, "---", new {@class="form-control"})
+        @Html.ValidationMessageFor(u=>u.COLABORADOR)
+
+    </div>
+    <div class="form-group">
+
+        @Html.Label("Login")
+        @Html.TextBoxFor(u => u.Login,new { @class = "form-control" })
+        @Html.ValidationMessageFor(u => u.Login)
+
+    </div>
+
+    <div class="form-group">
+
+        @Html.Label("Senha")
+        @Html.PasswordFor(u => u.Senha, new { @class = "form-control" })
+        @Html.ValidationMessageFor(u => u.Senha)
+
+    </div>
+    <div class="form-group">
+        @Html.Label("Ativo")
+        @Html.CheckBoxFor(u => u.Ativo)
+    </div>
+    <input type="submit" value="Confirmar" class="btn btn-primary" />
+    @Html.ActionLink("Voltar", "Index", "", new {@class="btn btn-primary" })
+}

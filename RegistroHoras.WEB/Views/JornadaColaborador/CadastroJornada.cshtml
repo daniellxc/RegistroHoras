@@ -1,0 +1,83 @@
+﻿@using GridMvc.Html
+@model RegistroHoras.DATA.JornadaColaborador
+@{
+    SelectList colaboradores = new SelectList(new RegistroHoras.DATA.classes.business.ColaboradorBO().TodosColaboradores(),"registro","nome");
+    SelectList turnos = new SelectList(new RegistroHoras.DATA.classes.business.TurnoBO().TurnosAtivos(), "registro", "descricao");
+    
+}
+
+
+@section scripts{
+    <script src="~/Scripts/jquery-1.9.0.min.js"></script>
+    <script src="~/Scripts/jquery.mask.js"></script>
+    <script src="~/Scripts/js.js"></script>
+    <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui.js"></script>
+
+
+
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#horaEntrada').mask('99:99');
+        $('#horaSaida').mask('99:99');
+    });
+
+</script>
+
+<h2>Configurar Jornada do Colaborador</h2>
+
+@*exibe as jornadas cadastradas para o colaborador*@
+@if (Model!=null && Model.colaborador != 0)
+{
+    
+    <h3>Jornadas Cadastradas</h3>
+    
+    @Html.Grid(new RegistroHoras.DATA.classes.business.JornadaColaboradorBO().JornadasDoColaborador(Model.colaborador)).Columns(c =>
+{
+    c.Add(d => d.FK_Turno.descricao).Titled("Turno");
+    c.Add(d => d.horaEntrada).Titled("Entrada").Format("{0:t}") ;
+    c.Add(d => d.horaSaida).Titled("Saída").Format("{0:t}");
+ 
+    c.Add().Sanitized(false).Encoded(false).RenderValueAs(e => @Html.ActionLink("remover", "RemoverJornada", new { registro = e.registro }));
+})
+    
+    
+
+}
+
+
+@using(Html.BeginForm("SalvarJornada","JornadaColaborador"))
+{
+    
+    <div class="form-group">
+        @Html.Label("Colaborador")
+        @Html.DropDownListFor(c => c.colaborador, colaboradores,"selecione", new {@class="form-control" })
+        @Html.ValidationMessageFor(c=>c.colaborador)
+    </div>
+    <div class="form-group">
+        @Html.Label("Turno")
+        @Html.DropDownListFor(c => c.turno, turnos,"selecione", new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.turno)
+    </div>
+    <div class="form-group">
+        @Html.Label("Hora Entrada")
+        @Html.TextBoxFor(c => c.horaEntrada,new { @class = "form-control",@placeholder="hh:mm"})
+        @Html.ValidationMessageFor(c => c.horaEntrada)
+    </div>
+    <div class="form-group">
+        @Html.Label("Hora Saída")
+        @Html.TextBoxFor(c => c.horaSaida, new { @class = "form-control", @placeholder = "hh:mm" })
+        @Html.ValidationMessageFor(c => c.horaSaida)
+    </div>
+    <div class="form-group">
+        @Html.Label("Ativo")
+        @Html.CheckBoxFor(c => c.ativo, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.ativo)
+    </div>
+    
+    <input type="submit" value="Confirmar" class="btn btn-primary" />
+    
+}
