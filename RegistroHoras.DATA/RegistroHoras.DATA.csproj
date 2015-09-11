@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="classes\AbstractDAO.cs" />
     <Compile Include="classes\acessorio\Exceptions.cs" />
+    <Compile Include="classes\acessorio\Util.cs" />
     <Compile Include="classes\business\ColaboradorBO.cs" />
     <Compile Include="classes\business\GrupoBO.cs" />
     <Compile Include="classes\business\JornadaColaboradorBO.cs" />

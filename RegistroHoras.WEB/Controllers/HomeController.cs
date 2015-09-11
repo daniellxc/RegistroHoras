@@ -25,7 +25,8 @@ namespace RegistroHoras.WEB.Controllers
             //    cont.Colaboradores.Add(colab);
             //    cont.SaveChanges();
             //}
-          
+
+           
 
            
 

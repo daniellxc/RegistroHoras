@@ -5,8 +5,10 @@
     string percentual = "";
     if (Model.Count > 0)
     {
-         horasMes = new RegistroHoras.DATA.classes.business.RegistroHorasBO().TotalHorasMes(int.Parse(User.Identity.Name), Model[0].entrada.Month);
-         percent = Math.Round((Math.Round(horasMes.TotalHours, 2) / Model[0].FK_JornadaColaborador.FK_Colaborador.regimeMensal) * 100, 2);
+        RegistroHoras.DATA.RegistroHoras registro = Model[0];
+        
+         horasMes = new RegistroHoras.DATA.classes.business.RegistroHorasBO().TotalHorasMes(int.Parse(User.Identity.Name), registro.entrada.Month, registro.entrada.Year);
+         percent = Math.Round((Math.Round(horasMes.TotalHours, 2) / new RegistroHoras.DATA.classes.business.ColaboradorBO().RegimeDoMes(registro.FK_JornadaColaborador.colaborador,registro.entrada.Month,registro.entrada.Year)) * 100, 2);
          percentual = percent.ToString().Replace(',', '.') + "%";
         
     }
@@ -24,14 +26,14 @@
     c.Add(d => d.FK_JornadaColaborador.FK_Turno.descricao).Titled("Turno");
     c.Add(d => d.entrada).Titled("Entrada");
     c.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @Saida(d.saida)).Titled("Saída");
-    c.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @saldoHoras(d)).Titled("Hora/Dia");
+    c.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @saldoHoras(d)).Titled("Hora/Turno");
     c.Add(d => d.Observacao).Titled("Obs");
     c.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @Html.ActionLink("excluir", "ExcluirRegistroHora", new { registroHora = d.registro, caminho = Request.Path}, new {@onclick="return Confirm('Deseja realmente excluir este registro?');" }));
 }).EmptyText("Sem registro de horas para este mês.").WithPaging(41)
 
 @if (horasMes > new TimeSpan(0))
 {
-    <p>Total de Horas: @Math.Round(horasMes.TotalHours,2) de @Model[0].FK_JornadaColaborador.FK_Colaborador.regimeMensal horas</p>
+    <p>Total de Horas: @Math.Round(horasMes.TotalHours,2)</p>
 }
 
 

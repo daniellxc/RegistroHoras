@@ -15,9 +15,9 @@
 {
     c.Add(co => co.nome).Titled("Nome");
     c.Add(co => co.cpf).Titled("CPF");
-    c.Add(co => co.regimeMensal).Titled("Horas mensais");
+    c.Add(co => co.regimeDiario).Titled("Horas mensais");
     c.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @Html.ActionLink("jornada", "CadastroJornada","JornadaColaborador", new { registroColaborador = d.registro },""));
-    c.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @Html.ActionLink("horas", "ListarHorasRegistradasColaborador", "RegistroHoras", new { registroColaborador = d.registro }, ""));
+    c.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @Html.ActionLink("horas", "ListarHorasRegistradasColaborador", "RegistroHoras", new { registroColaborador = d.registro, area = "" }, ""));
     c.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @Html.ActionLink("editar", "Editar", new { registro = d.registro }));
     c.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @Html.ActionLink("excluir", "Excluir", new { registro = d.registro }, new {@onclick  = "return Confirm('Deseja realmente excluir este colaborador?')"}));
 })

@@ -140,8 +140,8 @@
     <Content Include="Web.config" />
     <Content Include="Views\Shared\_GridPager.cshtml" />
     <Content Include="Views\Shared\_Grid.cshtml" />
-    <Content Include="Views\Colaborador\Index.cshtml" />
-    <Content Include="Views\Colaborador\Cadastro.cshtml" />
+    <Content Include="Areas\Admin\Views\Colaborador\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Colaborador\Cadastro.cshtml" />
     <Content Include="Views\JornadaColaborador\CadastroJornada.cshtml" />
     <Content Include="Views\RegistroHoras\RegistrarHoraColaborador.cshtml" />
   </ItemGroup>
@@ -154,7 +154,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Content\Utils.cs" />
-    <Compile Include="Controllers\ColaboradorController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ColaboradorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JornadaColaboradorController.cs" />
     <Compile Include="Controllers\LoginController.cs" />

@@ -5,10 +5,10 @@
     if(usr!= null)
     {
         horasHoje = new RegistroHoras.DATA.classes.business.RegistroHorasBO().RegistroHorasColaboradorData(usr.COLABORADOR,DateTime.Now.Date);
-        totalHorasAtuais = new RegistroHoras.DATA.classes.business.RegistroHorasBO().TotalHorasMes(usr.COLABORADOR, DateTime.Now.Month).TotalHours;
+        totalHorasAtuais = new RegistroHoras.DATA.classes.business.RegistroHorasBO().TotalHorasMes(usr.COLABORADOR, DateTime.Now.Month,DateTime.Now.Year).TotalHours;
     }
-    
-    string percentual = new RegistroHoras.DATA.classes.business.RegistroHorasBO().StringPercentualHorasMes(usr.COLABORADOR, DateTime.Now.Month);
+
+    string percentual = new RegistroHoras.DATA.classes.business.RegistroHorasBO().StringPercentualHorasMes(usr.COLABORADOR, DateTime.Now.Month, DateTime.Now.Year);
     
 }
 
@@ -26,8 +26,8 @@
                 </div>
 
                 <div class="panel-body">
-
-                    <label>Jornada Mensal:</label>@usr.FK_Colaborador.regimeMensal Horas <br />
+                    @{ string regimeMensal = new RegistroHoras.DATA.classes.business.ColaboradorBO().RegimeDoMes(usr.COLABORADOR, DateTime.Now.Month, DateTime.Now.Year).ToString();}
+                    <label>Jornada Mensal:</label> @regimeMensal Horas <br />
                     <label>Horas Registradas:</label> @Math.Round(totalHorasAtuais, 2)
 
 
