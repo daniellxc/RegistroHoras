@@ -79,15 +79,18 @@ namespace RegistroHoras.DATA.classes.business
         }
 
 
+
+
+
         /// <summary>
         /// Horas registradas pelo colaborador no mês
         /// </summary>
         /// <param name="registroColaborador"></param>
         /// <param name="mes"></param>
         /// <returns></returns>
-        public List<RegistroHoras> RegistroHorasColaboradorMes(int registroColaborador, int mes)
+        public List<RegistroHoras> RegistroHorasColaboradorMes(int registroColaborador, int mes, int ano)
         {
-            return DAO.Find(rh => rh.FK_JornadaColaborador.colaborador == registroColaborador && rh.entrada.Month == mes);
+            return DAO.Find(rh => rh.FK_JornadaColaborador.colaborador == registroColaborador && rh.entrada.Month == mes && rh.entrada.Year == ano);
         }
 
 
@@ -132,13 +135,13 @@ namespace RegistroHoras.DATA.classes.business
 
         }
 
-        public TimeSpan TotalHorasMes(int registroColaborador, int mes)
+        public TimeSpan TotalHorasMes(int registroColaborador, int mes, int ano)
         {
             try
             {
                 TimeSpan retorno = new TimeSpan(0,0,0);
 
-                foreach (RegistroHoras rh in this.RegistroHorasColaboradorMes(registroColaborador, mes))
+                foreach (RegistroHoras rh in this.RegistroHorasColaboradorMes(registroColaborador, mes, ano))
                 {
                     if (rh.saida.TimeOfDay != new TimeSpan(0,0,0))
                         retorno += rh.saida.TimeOfDay - rh.entrada.TimeOfDay;
@@ -152,11 +155,11 @@ namespace RegistroHoras.DATA.classes.business
             }
         }
 
-        public string StringPercentualHorasMes(int registroColaborador, int mes)
+        public string StringPercentualHorasMes(int registroColaborador, int mes, int ano)
         {
-            if (TotalHorasMes(registroColaborador, mes) != new TimeSpan(0, 0, 0))
+            if (TotalHorasMes(registroColaborador, mes, ano) != new TimeSpan(0, 0, 0))
             {
-                Double percent = Math.Round((Math.Round(TotalHorasMes(registroColaborador,mes).TotalHours, 2) / new ColaboradorBO().GetColaborador(registroColaborador).regimeMensal) * 100, 2);
+                Double percent = Math.Round((Math.Round(TotalHorasMes(registroColaborador,mes,ano).TotalHours, 2) / new ColaboradorBO().RegimeDoMes(registroColaborador,mes,ano)) * 100, 2);
                 return percent.ToString().Replace(',', '.') + "%";
             }
             return "0%";

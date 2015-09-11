@@ -22,7 +22,7 @@ namespace RegistroHoras.WEB.Controllers
 
         public ActionResult MesAtual(int registroColaborador)
         {
-            return View(DAO.RegistroHorasColaboradorMes(registroColaborador, DateTime.Now.Month));
+            return View(DAO.RegistroHorasColaboradorMes(registroColaborador, DateTime.Now.Month,DateTime.Now.Year));
         }
 
         public ActionResult PegarJornadasColaborador(int registroColaborador)
@@ -78,25 +78,26 @@ namespace RegistroHoras.WEB.Controllers
             RegistroHoras.DATA.RegistroHoras regHora = DAO.GetRegistroHora(registroHora);
             int colaborador = regHora.FK_JornadaColaborador.colaborador;
             int mes = regHora.entrada.Month;
+            int ano = regHora.entrada.Year;
             string[] path = caminho.Split('/');
             try
             {
                 DAO.ExcluirRegistroHoras(DAO.GetRegistroHora(registroHora));
 
-                return View(path[3],DAO.RegistroHorasColaboradorMes(colaborador,mes));
+                return View(path[3],DAO.RegistroHorasColaboradorMes(colaborador,mes,ano));
             }
             catch (Exception ex)
             {
                 Response.Write(ex.Message);
-                return View(path[3], DAO.RegistroHorasColaboradorMes(colaborador, mes));
+                return View(path[3], DAO.RegistroHorasColaboradorMes(colaborador, mes,ano));
             }
         }
 
 
-        public PartialViewResult ConsultarRegistroHorasMes(int registroColaborador,int Mes)
+        public PartialViewResult ConsultarRegistroHorasMes(int registroColaborador,int Mes, int Ano)
         {
 
-            return PartialView("PartialRegistroHorasMes", DAO.RegistroHorasColaboradorMes(registroColaborador, Mes));
+            return PartialView("PartialRegistroHorasMes", DAO.RegistroHorasColaboradorMes(registroColaborador, Mes, Ano));
         }
 
 

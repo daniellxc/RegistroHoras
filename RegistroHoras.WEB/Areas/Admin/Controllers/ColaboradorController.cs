@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace RegistroHoras.WEB.Controllers
+namespace RegistroHoras.WEB.Areas.Admin.Controllers
 {
     [Authorize]
     public class ColaboradorController : Controller

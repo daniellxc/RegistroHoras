@@ -72,6 +72,9 @@ namespace RegistroHoras.DATA.classes.business
         }
 
 
+    
+
+
 
         public JornadaColaborador GetJornadaColaborador(int registro)
         {

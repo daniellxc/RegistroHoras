@@ -26,7 +26,9 @@ namespace RegistroHoras.DATA
 
         [Display(Name="Horas Mensais")]
         [Required(ErrorMessage="campo obrigatório")]
-        public int regimeMensal { get; set; }
+        public int regimeDiario { get; set; }
+
+   
 
         public virtual ICollection<JornadaColaborador> JornadaColaborador { get; set; }
     }

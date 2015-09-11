@@ -100,6 +100,15 @@ namespace RegistroHoras.DATA.classes.business
             }
         }
 
+        #region Consultas
+        //Retorna o a quantidade de horas a serem trabalhadas no mes
+        public int RegimeDoMes(int registroColaborador, int mes, int ano)
+        {
+            return Util.TotalDiasUteisMes(mes, ano) * this.GetColaborador(registroColaborador).regimeDiario;
+        }
+
+        #endregion
+
 
     }
 }

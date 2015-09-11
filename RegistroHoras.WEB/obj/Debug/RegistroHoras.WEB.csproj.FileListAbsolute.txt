@@ -23,3 +23,28 @@ c:\users\daniel.cardoso\documents\visual studio 2013\Projects\RegistroHoras\Regi
 c:\users\daniel.cardoso\documents\visual studio 2013\Projects\RegistroHoras\RegistroHoras.WEB\obj\Debug\RegistroHoras.WEB.dll
 c:\users\daniel.cardoso\documents\visual studio 2013\Projects\RegistroHoras\RegistroHoras.WEB\obj\Debug\RegistroHoras.WEB.pdb
 c:\users\daniel.cardoso\documents\visual studio 2013\Projects\RegistroHoras\RegistroHoras.WEB\bin\GridMvc.dll
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\RegistroHoras.WEB.dll.config
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\RegistroHoras.WEB.dll
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\RegistroHoras.WEB.pdb
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\EntityFramework.dll
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\EntityFramework.SqlServer.dll
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\GridMvc.dll
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\RegistroHoras.DATA.dll
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\System.Web.Helpers.dll
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\System.Web.Mvc.dll
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\System.Web.Razor.dll
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\System.Web.Webpages.dll
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\System.Web.Webpages.Razor.dll
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\RegistroHoras.DATA.pdb
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\EntityFramework.xml
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\EntityFramework.SqlServer.xml
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\System.Web.Razor.xml
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\System.Web.Webpages.xml
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\System.Web.Webpages.Razor.xml
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\System.Web.Helpers.xml
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\bin\System.Web.Mvc.xml
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\obj\Debug\RegistroHoras.WEB.csprojResolveAssemblyReference.cache
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\obj\Debug\RegistroHoras.WEB.dll
+C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.WEB\obj\Debug\RegistroHoras.WEB.pdb
