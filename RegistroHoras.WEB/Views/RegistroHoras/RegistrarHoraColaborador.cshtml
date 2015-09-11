@@ -109,12 +109,12 @@
 {
 
 <div class="form-group">
-    @Html.Label("Selecione um colaborador")
-    @Html.DropDownList("colaborador", colaboradores, "selecione", new { @class = "form-control" })
+    @Html.Label("Colaborador")
+    @Html.DropDownList("colaborador", colaboradores,"---", new { @class = "form-control" })
     @Html.ValidationMessage("colaborador")
 </div>
 <div class="form-group">
-    @Html.Label("Selecione o turno")
+    @Html.Label("Turno")
     @Html.DropDownList("jornada", new SelectList(string.Empty, "Value", "Text"), new { @class = "form-control" })
     @Html.ValidationMessageFor(m=>m.jornadaColaborador)
     
