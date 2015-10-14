@@ -142,7 +142,7 @@
     <Content Include="Views\Shared\_Grid.cshtml" />
     <Content Include="Areas\Admin\Views\Colaborador\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Colaborador\Cadastro.cshtml" />
-    <Content Include="Views\JornadaColaborador\CadastroJornada.cshtml" />
+    <Content Include="Areas\Admin\Views\JornadaColaborador\CadastroJornada.cshtml" />
     <Content Include="Views\RegistroHoras\RegistrarHoraColaborador.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -156,7 +156,7 @@
     <Compile Include="Content\Utils.cs" />
     <Compile Include="Areas\Admin\Controllers\ColaboradorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\JornadaColaboradorController.cs" />
+    <Compile Include="Areas\Admin\Controllers\JornadaColaboradorController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegistroHorasController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsuarioController.cs" />

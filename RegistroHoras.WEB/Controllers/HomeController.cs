@@ -1,5 +1,6 @@
 ﻿using RegistroHoras.DATA;
 using RegistroHoras.DATA.classes;
+using RegistroHoras.DATA.classes.acessorio;
 using RegistroHoras.DATA.classes.business;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace RegistroHoras.WEB.Controllers
             //    cont.SaveChanges();
             //}
 
-           
+            string t = Util.RetornaStringHorasMinutos(1.3) ;
 
            
 

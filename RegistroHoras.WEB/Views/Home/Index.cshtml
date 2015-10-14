@@ -28,8 +28,9 @@
 
                 <div class="panel-body">
                     @{ string regimeMensal = new RegistroHoras.DATA.classes.business.ColaboradorBO().RegimeDoMes(usr.COLABORADOR, DateTime.Now.Month, DateTime.Now.Year).ToString();}
-                    <label>Jornada Mensal:</label> @regimeMensal Horas <br />
-                    <label>Horas Registradas:</label> @Math.Round(totalHorasAtuais, 2)
+                    <label>Dias úteis:</label> @RegistroHoras.DATA.classes.acessorio.Util.TotalDiasUteisMes(DateTime.Now.Month,DateTime.Now.Year).ToString() dias<br />
+                    <label>Horas do Mês:</label> @regimeMensal horas <br />
+                    <label>Horas Trabalhadas:</label> @Math.Round(totalHorasAtuais, 2) horas
 
 
 
@@ -64,7 +65,7 @@
                         {
                             string saida = horasHoje[i].saida.TimeOfDay == new TimeSpan(0,0,0) ? "---" : horasHoje[i].saida.TimeOfDay.ToString() ;
                             <tr>
-                                <td><label>@horasHoje[i].FK_JornadaColaborador.FK_Turno.descricao</label></td>
+                                <td><strong>@horasHoje[i].FK_JornadaColaborador.FK_Turno.descricao</strong></td>
                                 <td><span>entrada:&nbsp;</span>@horasHoje[i].entrada.TimeOfDay</td>
                                 <td> <span>saída:&nbsp;</span>@saida</td>
                             </tr>

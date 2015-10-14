@@ -26,6 +26,7 @@
 
                 @Html.Label("Listar registros do mês")
                 @Html.DropDownList("Mes", new SelectList(RegistroHoras.WEB.Content.Utils.MesesDoAno(), "Value", "Key"), "---", new { @class = "form-control" })
+                @Html.Hidden("ano",DateTime.Now.Year)
              
             </div>
 
