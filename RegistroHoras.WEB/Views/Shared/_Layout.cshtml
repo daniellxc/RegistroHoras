@@ -44,11 +44,11 @@
                         <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Mês Atual", "MesAtual", "RegistroHoras", new { registroColaborador = int.Parse(User.Identity.Name) }, "")</li>
                             <li>@Html.ActionLink("Registros por Mês", "ListarHorasRegistradasColaborador", "RegistroHoras", new { registroColaborador = int.Parse(User.Identity.Name) }, "")</li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
+                            
+                                @*<li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">One more separated link</a></li>*@
                         </ul>
                     </li>
                 </ul>

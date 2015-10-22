@@ -24,7 +24,7 @@ namespace RegistroHoras.DATA
         [StringLength(14)]
         public string cpf { get; set; }
 
-        [Display(Name="Horas Mensais")]
+        [Display(Name="Horas Diárias")]
         [Required(ErrorMessage="campo obrigatório")]
         public int regimeDiario { get; set; }
 

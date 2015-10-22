@@ -79,9 +79,6 @@ namespace RegistroHoras.DATA.classes.business
         }
 
 
-
-
-
         /// <summary>
         /// Horas registradas pelo colaborador no mês
         /// </summary>
@@ -155,6 +152,13 @@ namespace RegistroHoras.DATA.classes.business
             }
         }
 
+        /// <summary>
+        /// Retorna uma string com o percentual de horas já trabalhadas no mês
+        /// </summary>
+        /// <param name="registroColaborador"></param>
+        /// <param name="mes"></param>
+        /// <param name="ano"></param>
+        /// <returns></returns>
         public string StringPercentualHorasMes(int registroColaborador, int mes, int ano)
         {
             if (TotalHorasMes(registroColaborador, mes, ano) != new TimeSpan(0, 0, 0))
@@ -163,6 +167,20 @@ namespace RegistroHoras.DATA.classes.business
                 return percent.ToString().Replace(',', '.') + "%";
             }
             return "0%";
+        }
+
+        public Double SaldoHorasMes(int registroColaborador, int mes, int ano)
+        {
+            Double retorno = 0;
+            TimeSpan totalHorasMes = TotalHorasMes(registroColaborador,mes, ano);
+            if (totalHorasMes != new TimeSpan(0, 0, 0))
+            {
+                retorno = totalHorasMes.TotalHours - new ColaboradorBO().RegimeDoMes(registroColaborador, mes, ano);
+                
+            }
+
+            return retorno;
+
         }
 
         #endregion

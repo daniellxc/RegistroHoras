@@ -30,5 +30,33 @@ namespace RegistroHoras.DATA.classes.acessorio
 
         }
 
+        public static string RetornaStringHorasMinutos(double hora)
+        {
+            decimal m = Math.Abs((decimal)hora) % 1;
+
+            string horas, minutos = "00";
+
+            string[] strHoras = hora.ToString().Split(',');
+
+            horas = strHoras[0];
+
+            if (strHoras.Length == 2)
+            {
+                int resultado = (int.Parse(strHoras[1].PadRight(2,'0')) * 60) / 100;
+
+                if (resultado >= 60)
+                {
+                    horas = (int.Parse(strHoras[0]) + 1).ToString();
+                }
+                else
+                    minutos = resultado.ToString();
+
+            }
+               
+
+            
+            return horas + " hora(s) e " + minutos + " minuto(s)";
+        }
+
     }
 }
