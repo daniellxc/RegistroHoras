@@ -28,7 +28,7 @@
     c.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @Saida(d.saida)).Titled("Saída");
     c.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @saldoHoras(d)).Titled("Hora/Turno");
     c.Add(d => d.Observacao).Titled("Obs");
-    c.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @Html.ActionLink("excluir", "ExcluirRegistroHora", new { registroHora = d.registro, caminho = Request.Path}, new {@onclick="return Confirm('Deseja realmente excluir este registro?');" }));
+    c.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @Html.ActionLink("excluir", "ExcluirRegistroHora", new { registroHora = d.registro, returnView = ViewContext.Controller.ValueProvider.GetValue("action").RawValue }, new { @onclick = "return Confirm('Deseja realmente excluir este registro?');" }));
 }).EmptyText("Sem registro de horas para este mês.").WithPaging(42)
 
 @if (horasMes > new TimeSpan(0))

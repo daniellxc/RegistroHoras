@@ -22,6 +22,7 @@ namespace RegistroHoras.WEB.Controllers
 
         public ActionResult MesAtual(int registroColaborador)
         {
+       
             return View(DAO.RegistroHorasColaboradorMes(registroColaborador, DateTime.Now.Month,DateTime.Now.Year));
         }
 
@@ -72,25 +73,25 @@ namespace RegistroHoras.WEB.Controllers
         }
 
    
-        public ActionResult ExcluirRegistroHora(int registroHora, string caminho)
+        public ActionResult ExcluirRegistroHora(int registroHora, string returnView)
         {
             
             RegistroHoras.DATA.RegistroHoras regHora = DAO.GetRegistroHora(registroHora);
             int colaborador = regHora.FK_JornadaColaborador.colaborador;
             int mes = regHora.entrada.Month;
             int ano = regHora.entrada.Year;
-            string[] path = caminho.Split('/');
+            
             
             try
             {
                 DAO.ExcluirRegistroHoras(DAO.GetRegistroHora(registroHora));
 
-                return RedirectToAction(path[3], new { registroColaborador = colaborador });
+                return RedirectToAction(returnView, new { registroColaborador = colaborador });
             }
             catch (Exception ex)
             {
                 Response.Write(ex.Message);
-                return View(path[3], DAO.RegistroHorasColaboradorMes(colaborador, mes,ano));
+                return RedirectToAction(returnView, new { registroColaborador = colaborador });
             }
         }
 
