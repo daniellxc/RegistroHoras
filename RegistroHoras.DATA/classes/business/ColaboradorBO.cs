@@ -107,6 +107,13 @@ namespace RegistroHoras.DATA.classes.business
             return Util.TotalDiasUteisMes(mes, ano) * this.GetColaborador(registroColaborador).regimeDiario;
         }
 
+        public TimeSpan HorasUteisMes(int registroColaborador, int mes, int ano)
+        {
+            int total = Util.TotalDiasUteisMes(mes, ano) * this.GetColaborador(registroColaborador).regimeDiario;
+            return new TimeSpan(total,0,0);
+            
+        }
+
         #endregion
 
 

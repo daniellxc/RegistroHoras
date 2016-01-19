@@ -27,7 +27,7 @@ namespace RegistroHoras.WEB.Controllers
             //    cont.SaveChanges();
             //}
 
-            string t = Util.RetornaStringHorasMinutos(1.3) ;
+            var t = new RegistroHorasBO().ConsultaBancoHoras(1, 2015);
 
            
 

@@ -21,7 +21,7 @@ namespace RegistroHoras.WEB.Content
             meses.Add("Setembro", 9);
             meses.Add("Outubro", 10);
             meses.Add("Novembro", 11);
-            meses.Add("Desembro", 12);
+            meses.Add("Dezembro", 12);
             return meses;
         }
     }

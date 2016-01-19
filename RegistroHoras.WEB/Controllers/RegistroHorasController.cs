@@ -80,11 +80,12 @@ namespace RegistroHoras.WEB.Controllers
             int mes = regHora.entrada.Month;
             int ano = regHora.entrada.Year;
             string[] path = caminho.Split('/');
+            
             try
             {
                 DAO.ExcluirRegistroHoras(DAO.GetRegistroHora(registroHora));
 
-                return View(path[3],DAO.RegistroHorasColaboradorMes(colaborador,mes,ano));
+                return RedirectToAction(path[3], new { registroColaborador = colaborador });
             }
             catch (Exception ex)
             {

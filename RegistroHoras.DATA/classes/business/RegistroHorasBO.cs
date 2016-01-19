@@ -100,7 +100,7 @@ namespace RegistroHoras.DATA.classes.business
         {
             try
             {
-                return DAO.Find(rh => rh.jornadaColaborador == registroJornadaColaborador &&
+                return DAO.Find(rh => rh.jornadaColaborador == registroJornadaColaborador && 
                                   DbFunctions.TruncateTime(rh.entrada) == DbFunctions.TruncateTime(DateTime.Now)).First();
             }
             catch
@@ -130,6 +130,20 @@ namespace RegistroHoras.DATA.classes.business
             }
 
 
+        }
+
+        public IQueryable ConsultaBancoHoras(int registroColaborador, int ano)
+        {
+            Context _context = new Context();
+
+            var query = from rh in _context.RegistroHoras
+                        where rh.entrada.Year == ano && rh.FK_JornadaColaborador.colaborador == registroColaborador
+                        select new { mes = rh.entrada.Date.Month, horas = rh.saida.TimeOfDay - rh.entrada.TimeOfDay };
+            var saldos = from saldo in query
+                         group saldo by new { mes = saldo.mes, saldo = saldo.horas } into g
+                         select new { mes = g.Key.mes, saldoHoras = g.Sum(x => x.horas.TotalHours) };
+            return saldos;
+                        
         }
 
         public TimeSpan TotalHorasMes(int registroColaborador, int mes, int ano)
@@ -175,7 +189,7 @@ namespace RegistroHoras.DATA.classes.business
             TimeSpan totalHorasMes = TotalHorasMes(registroColaborador,mes, ano);
             if (totalHorasMes != new TimeSpan(0, 0, 0))
             {
-                retorno = totalHorasMes.TotalHours - new ColaboradorBO().RegimeDoMes(registroColaborador, mes, ano);
+                retorno = totalHorasMes.Subtract( new ColaboradorBO().HorasUteisMes(registroColaborador, mes, ano)).TotalHours;
                 
             }
 
