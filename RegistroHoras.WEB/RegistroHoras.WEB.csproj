@@ -185,6 +185,8 @@
     <Content Include="Views\Shared\_Mensagem.cshtml" />
     <Content Include="Areas\Admin\Views\Usuario\ConfigurarUsuario.cshtml" />
     <Content Include="Views\Login\Login_.cshtml" />
+    <Content Include="Views\RegistroHoras\ConsultarBancoHoras.cshtml" />
+    <Content Include="Views\RegistroHoras\PartialBancoHoras.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

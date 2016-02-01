@@ -44,6 +44,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Mês Atual", "MesAtual", "RegistroHoras", new { registroColaborador = int.Parse(User.Identity.Name) }, "")</li>
                             <li>@Html.ActionLink("Registros por Mês", "ListarHorasRegistradasColaborador", "RegistroHoras", new { registroColaborador = int.Parse(User.Identity.Name) }, "")</li>
+                            <li>@Html.ActionLink("Banco de Horas", "ConsultarBancoHoras", "RegistroHoras", new { registroColaborador = int.Parse(User.Identity.Name) }, "")</li>
                             
                                 @*<li class="divider"></li>
                                 <li><a href="#">Separated link</a></li>

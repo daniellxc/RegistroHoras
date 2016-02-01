@@ -102,12 +102,20 @@ namespace RegistroHoras.WEB.Controllers
             return PartialView("PartialRegistroHorasMes", DAO.RegistroHorasColaboradorMes(registroColaborador, Mes, Ano));
         }
 
-
+        public PartialViewResult ConsutaBancoHorasAno(int colaborador, int ano)
+        {
+            return PartialView("PartialBancoHoras", DAO.RegistroHorasColaborador(colaborador).Where(r=>r.entrada.Year == ano).ToList());
+        }
    
 
         public ActionResult ListarHorasRegistradasColaborador(int registroColaborador)
         {
             return View(new ColaboradorBO().GetColaborador(registroColaborador));
+        }
+
+        public ActionResult ConsultarBancoHoras(int registroColaborador)
+        {
+            return View(registroColaborador);
         }
     }
 }
