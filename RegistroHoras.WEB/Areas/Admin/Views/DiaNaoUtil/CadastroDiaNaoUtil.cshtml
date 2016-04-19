@@ -1,0 +1,46 @@
+﻿@model RegistroHoras.DATA.classes.DiaNaoUtil
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Controle de Feriados</title>
+</head>
+<body>
+    <div> 
+        <h2>Controle de Feriados</h2>
+
+        @using (Html.BeginForm("CadastrarDiaNaoUtil", "DiaNaoUtil"))
+        {
+            <div class="form-group">
+                @Html.LabelFor(d=>d.Nome)
+                @Html.TextBoxFor(d => d.Nome, new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.Nome)<br />
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.Dia)
+                @Html.TextBoxFor(d => d.Dia, new {@class="form-control"})
+                @Html.ValidationMessageFor(d=>d.Dia)<br />
+
+                @Html.LabelFor(d => d.Mes)
+                @Html.TextBoxFor(d => d.Mes, new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.Mes)<br />
+
+                @Html.LabelFor(d => d.Ano)
+                @Html.TextBoxFor(d => d.Ano, new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.Ano)<br />
+
+                @Html.LabelFor(d=>d.Permanente)
+                @Html.CheckBoxFor(d=>d.Permanente)
+
+            </div>
+            
+            <input type="submit" value="Salvar" class="btn btn-primary" />
+
+
+        }
+
+    </div>
+</body>
+</html>

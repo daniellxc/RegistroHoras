@@ -14,6 +14,7 @@ namespace RegistroHoras.DATA.classes
         #region DbSets
 
         public virtual DbSet<Colaborador> Colaboradores { get; set; }
+        public virtual DbSet<DiaNaoUtil> DiasNaoUteis { get; set; }
         public virtual DbSet<Grupo> Grupos { get; set; }
         public virtual DbSet<JornadaColaborador> JornadasColaboradores { get; set; }
         public virtual DbSet<RegistroHoras> RegistroHoras { get; set; }

@@ -66,7 +66,7 @@ namespace RegistroHoras.WEB.Controllers
             }
             catch(Exception ex) 
             {
-                return View("RegistroHoraColaborador").ComMensagem(ex.Message, "alert-erro");
+                return View("RegistrarHoraColaborador").ComMensagem(ex.Message, "alert-erro");
             }
            
             

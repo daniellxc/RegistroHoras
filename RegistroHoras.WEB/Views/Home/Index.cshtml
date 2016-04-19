@@ -5,7 +5,7 @@
     if(usr!= null)
     {
         horasHoje = new RegistroHoras.DATA.classes.business.RegistroHorasBO().RegistroHorasColaboradorData(usr.COLABORADOR,DateTime.Now.Date);
-        totalHorasAtuais = new RegistroHoras.DATA.classes.business.RegistroHorasBO().TotalHorasMes(usr.COLABORADOR, DateTime.Now.Month,DateTime.Now.Year).TotalHours;
+        totalHorasAtuais = new RegistroHoras.DATA.classes.business.RegistroHorasBO().TotalHorasTrabalhadasMes(usr.COLABORADOR, DateTime.Now.Month,DateTime.Now.Year).TotalHours;
     }
 
     string percentual = new RegistroHoras.DATA.classes.business.RegistroHorasBO().StringPercentualHorasMes(usr.COLABORADOR, DateTime.Now.Month, DateTime.Now.Year);

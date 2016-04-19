@@ -7,7 +7,7 @@
     {
         RegistroHoras.DATA.RegistroHoras registro = Model[0];
         
-         horasMes = new RegistroHoras.DATA.classes.business.RegistroHorasBO().TotalHorasMes(int.Parse(User.Identity.Name), registro.entrada.Month, registro.entrada.Year);
+         horasMes = new RegistroHoras.DATA.classes.business.RegistroHorasBO().TotalHorasTrabalhadasMes(int.Parse(User.Identity.Name), registro.entrada.Month, registro.entrada.Year);
          percent = Math.Round((Math.Round(horasMes.TotalHours, 2) / new RegistroHoras.DATA.classes.business.ColaboradorBO().RegimeDoMes(registro.FK_JornadaColaborador.colaborador,registro.entrada.Month,registro.entrada.Year)) * 100, 2);
          percentual = percent.ToString().Replace(',', '.') + "%";
         

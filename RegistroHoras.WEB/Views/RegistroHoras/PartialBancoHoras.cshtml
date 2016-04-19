@@ -14,7 +14,7 @@
     @foreach (int mes in Model.Select(r => r.entrada.Month).Distinct())
     {
        horasUteis = new RegistroHoras.DATA.classes.business.ColaboradorBO().HorasUteisMes(colaborador,mes,ano);
-       trabalhadas = new RegistroHoras.DATA.classes.business.RegistroHorasBO().TotalHorasMes(colaborador,mes,ano);
+       trabalhadas = new RegistroHoras.DATA.classes.business.RegistroHorasBO().TotalHorasTrabalhadasMes(colaborador,mes,ano);
        saldoHorasMes = new RegistroHoras.DATA.classes.business.RegistroHorasBO().SaldoHorasMes(colaborador, mes,ano);
 
        saldoFinal += saldoHorasMes;

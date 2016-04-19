@@ -146,7 +146,7 @@ namespace RegistroHoras.DATA.classes.business
                         
         }
 
-        public TimeSpan TotalHorasMes(int registroColaborador, int mes, int ano)
+        public TimeSpan TotalHorasTrabalhadasMes(int registroColaborador, int mes, int ano)
         {
             try
             {
@@ -175,9 +175,9 @@ namespace RegistroHoras.DATA.classes.business
         /// <returns></returns>
         public string StringPercentualHorasMes(int registroColaborador, int mes, int ano)
         {
-            if (TotalHorasMes(registroColaborador, mes, ano) != new TimeSpan(0, 0, 0))
+            if (TotalHorasTrabalhadasMes(registroColaborador, mes, ano) != new TimeSpan(0, 0, 0))
             {
-                Double percent = Math.Round((Math.Round(TotalHorasMes(registroColaborador,mes,ano).TotalHours, 2) / new ColaboradorBO().RegimeDoMes(registroColaborador,mes,ano)) * 100, 2);
+                Double percent = Math.Round((Math.Round(TotalHorasTrabalhadasMes(registroColaborador,mes,ano).TotalHours, 2) / new ColaboradorBO().RegimeDoMes(registroColaborador,mes,ano)) * 100, 2);
                 return percent.ToString().Replace(',', '.') + "%";
             }
             return "0%";
@@ -186,10 +186,10 @@ namespace RegistroHoras.DATA.classes.business
         public Double SaldoHorasMes(int registroColaborador, int mes, int ano)
         {
             Double retorno = 0;
-            TimeSpan totalHorasMes = TotalHorasMes(registroColaborador,mes, ano);
-            if (totalHorasMes != new TimeSpan(0, 0, 0))
+            TimeSpan totalHorasTrabalhadasMes = TotalHorasTrabalhadasMes(registroColaborador,mes, ano);
+            if (totalHorasTrabalhadasMes != new TimeSpan(0, 0, 0))
             {
-                retorno = totalHorasMes.Subtract( new ColaboradorBO().HorasUteisMes(registroColaborador, mes, ano)).TotalHours;
+                retorno = totalHorasTrabalhadasMes.Subtract( new ColaboradorBO().HorasUteisMes(registroColaborador, mes, ano)).TotalHours;
                 
             }
 

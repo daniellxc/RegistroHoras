@@ -52,6 +52,7 @@
     <Compile Include="classes\acessorio\Exceptions.cs" />
     <Compile Include="classes\acessorio\Util.cs" />
     <Compile Include="classes\business\ColaboradorBO.cs" />
+    <Compile Include="classes\business\DiaNaoUtilBO.cs" />
     <Compile Include="classes\business\GrupoBO.cs" />
     <Compile Include="classes\business\JornadaColaboradorBO.cs" />
     <Compile Include="classes\business\RegistroHorasBO.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="classes\business\UsuarioBO.cs" />
     <Compile Include="classes\Context.cs" />
     <Compile Include="classes\entidades\Colaborador.cs" />
+    <Compile Include="classes\entidades\DiaNaoUtil.cs" />
     <Compile Include="classes\entidades\Grupo.cs" />
     <Compile Include="classes\entidades\JornadaColaborador.cs" />
     <Compile Include="classes\entidades\Usuario.cs" />

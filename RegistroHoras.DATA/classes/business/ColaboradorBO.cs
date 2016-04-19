@@ -101,16 +101,24 @@ namespace RegistroHoras.DATA.classes.business
         }
 
         #region Consultas
-        //Retorna o a quantidade de horas a serem trabalhadas no mes
+        /// <summary>
+        /// Retorna a quantidade de horas a serem trabalhadas no mes
+        /// </summary>
+        /// <param name="registroColaborador"></param>
+        /// <param name="mes"></param>
+        /// <param name="ano"></param>
+        /// <returns></returns>
         public int RegimeDoMes(int registroColaborador, int mes, int ano)
         {
-            return Util.TotalDiasUteisMes(mes, ano) * this.GetColaborador(registroColaborador).regimeDiario;
+            //total de dias uteis menos os feriados registrados
+             int totalDias = Util.TotalDiasUteisMes(mes, ano) - new DiaNaoUtilBO().GetDiasNaoUteisMes(mes, ano).Count;
+             return totalDias * this.GetColaborador(registroColaborador).regimeDiario;
         }
 
         public TimeSpan HorasUteisMes(int registroColaborador, int mes, int ano)
         {
-            int total = Util.TotalDiasUteisMes(mes, ano) * this.GetColaborador(registroColaborador).regimeDiario;
-            return new TimeSpan(total,0,0);
+            
+            return new TimeSpan(RegimeDoMes(registroColaborador,mes,ano),0,0);
             
         }
 
