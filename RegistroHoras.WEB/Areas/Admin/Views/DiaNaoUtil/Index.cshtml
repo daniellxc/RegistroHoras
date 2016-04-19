@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
- 
+ <title></title>
 </head>
 <body>
     <div> 
@@ -22,11 +22,24 @@
             c.Add(f => f.Dia).Titled("Dia");
             c.Add().Titled("Mês").RenderValueAs(d=> System.Globalization.DateTimeFormatInfo.CurrentInfo.GetMonthName(d.Mes));
             c.Add(f => f.Ano).Titled("Ano");
+            c.Add().Encoded(false).Sanitized(false).RenderValueAs(d => CustomColumn(d.Permanente)).Titled("Permanente");
             c.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @Html.ActionLink("editar", "Editar", new { registro = d.Registro }));
             c.Add().Encoded(false).Sanitized(false).RenderValueAs(d => @Html.ActionLink("excluir", "Excluir", new { registro = d.Registro }, new { @onclick = "return Confirm('Deseja realmente excluir este registro?')" }));
         }).EmptyText("Nenhum registro localizado")
 
+        @helper CustomColumn(bool item)
+        {
 
+            if (item)
+            {
+                <label class="label label-success">sim</label>
+            }
+            else
+            {
+                <label class="label label-danger">não</label>
+            }
+
+}
     </div>
 </body>
 </html>
