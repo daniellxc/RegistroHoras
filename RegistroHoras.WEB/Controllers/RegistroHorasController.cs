@@ -95,6 +95,12 @@ namespace RegistroHoras.WEB.Controllers
             }
         }
 
+        public ActionResult MesAtualDetalhes(int registroColaborador)
+        {
+
+            return View(DAO.RegistroHorasColaboradorMes(registroColaborador, DateTime.Now.Month, DateTime.Now.Year));
+        }
+
 
         public PartialViewResult ConsultarRegistroHorasMes(int registroColaborador,int Mes, int Ano)
         {

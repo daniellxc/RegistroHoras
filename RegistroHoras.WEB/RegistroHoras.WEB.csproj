@@ -190,6 +190,7 @@
     <Content Include="Views\Login\Login_.cshtml" />
     <Content Include="Views\RegistroHoras\ConsultarBancoHoras.cshtml" />
     <Content Include="Views\RegistroHoras\PartialBancoHoras.cshtml" />
+    <Content Include="Views\RegistroHoras\MesAtualDetalhes.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,171 @@
+﻿@model List<RegistroHoras.DATA.RegistroHoras>
+@using GridMvc.Html
+
+    <h2>Horas registradas no mês corrente</h2>
+
+    @{
+        TimeSpan horasMes = new TimeSpan();
+        Double percent = 0;
+        string percentual = "";
+        List<RegistroHoras.DATA.classes.DiaNaoUtil> dias_nao_uteis =
+            new List<RegistroHoras.DATA.classes.DiaNaoUtil>();
+        List<RegistroHoras.WEB.Acessorio._Mes> mes = new List<RegistroHoras.WEB.Acessorio._Mes>();
+
+        if (Model.Count > 0)
+        {
+            RegistroHoras.DATA.RegistroHoras registro = Model[0];
+
+            horasMes = new RegistroHoras.DATA.classes.business.RegistroHorasBO().TotalHorasTrabalhadasMes(int.Parse(User.Identity.Name), registro.entrada.Month, registro.entrada.Year);
+            percent = Math.Round((Math.Round(horasMes.TotalHours, 2) / new RegistroHoras.DATA.classes.business.ColaboradorBO().RegimeDoMes(registro.FK_JornadaColaborador.colaborador, registro.entrada.Month, registro.entrada.Year)) * 100, 2);
+            percentual = percent.ToString().Replace(',', '.') + "%";
+
+            dias_nao_uteis = new RegistroHoras.DATA.classes.business.DiaNaoUtilBO().GetDiasNaoUteisMes(registro.entrada.Month, registro.entrada.Year);
+
+            DateTime dia_mes = new DateTime(registro.entrada.Year, registro.entrada.Month, 1);
+            for (int i = 0; i < 50; i++)
+            {
+                if (registro.entrada.Month == dia_mes.Month)
+                {
+                    mes.Add(new RegistroHoras.WEB.Acessorio._Mes(dia_mes));
+                    dia_mes = dia_mes.AddDays(1);
+                    DayOfWeek teste = dia_mes.DayOfWeek;
+                }
+            }
+        }
+
+    }
+
+    <table class="table table-striped grid-table" >
+        <thead>
+            <tr style="font-weight: bold">
+                <td></td>
+                <td>Data</td>
+                <td>Dia</td>
+                <td>Situação</td>
+            </tr>           
+        </thead>
+
+        <tbody>
+            @foreach (var item in mes)
+            {
+                <tr>
+                    <td>
+                        <button class="btn btn-success btn-xs" id="@("botao_expandir" + item._data.Day + item._data.Month)" onclick="$('#@("detalhes" + item._data.Day + item._data.Month)').show('fast'); $('#@("botao_expandir" + item._data.Day + item._data.Month)').hide(); $('#@("botao_recolher" + item._data.Day + item._data.Month)').show();">
+                            Expandir
+                        </button>
+                        <button class="btn btn-warning btn-xs" style="display:none" id="@("botao_recolher" + item._data.Day + item._data.Month)" onclick="$('#@("detalhes" + item._data.Day + item._data.Month)').hide('fast'); $('#@("botao_expandir" + item._data.Day + item._data.Month)').show(); $('#@("botao_recolher" + item._data.Day + item._data.Month)').hide();">
+                            Recolher
+                        </button>
+                    </td>
+                    <td>
+                          @item._data.ToShortDateString()
+                    </td>
+                    <td>@RegistroHoras.WEB.Acessorio.Util.dia_semana(item._data.DayOfWeek.ToString())</td>
+                    <td>
+
+                        @{
+                            List<RegistroHoras.DATA.RegistroHoras>
+                            _d =
+                            Model.Where(a => a.entrada.ToShortDateString().Equals(item._data.ToShortDateString())).ToList();
+                        }
+
+                        @if (dias_nao_uteis.Where(a => a.Dia.Equals(item._data.Day) &&
+                        a.Mes.Equals(item._data.Month) &&
+                        a.Ano.Equals(item._data.Year)
+                        ).ToList().Count == 0)
+                        {
+
+                          TimeSpan time_span = new TimeSpan();
+
+                        foreach (var _item_partial in _d)
+                        {
+                            time_span += _item_partial.saida.TimeOfDay - _item_partial.entrada.TimeOfDay;
+                        }
+
+                            if (time_span > new TimeSpan(0, 0, 0))
+                            {
+                            <span class="text-info"><strong>@time_span</strong></span>
+                            }
+                            else
+                            {
+                                if (item._data.DayOfWeek.ToString().Equals("Saturday") || item._data.DayOfWeek.ToString().Equals("Sunday"))
+                                {
+                                    <span class="text-info"><strong>Final de Semana</strong></span>
+                                }
+                                else
+                                {
+                                    <span class="text-info"><strong>Dia não trabalhado</strong></span>
+                                }
+                            }
+                        }
+                        else
+                        {
+                            <span class="text-info"><strong>Feriado</strong></span>
+                        }
+
+                    </td>
+                </tr>
+                <tr style="display:none" id="@("detalhes" + item._data.Day + item._data.Month)">
+                    
+                    @if (_d.Count == 0)
+                    {
+                         <td colspan="4"><center>Sem Valores</center></td>
+                    }
+                    else { 
+                        <td colspan="4">
+                            <table class="table">
+                                <tr style="font-weight:bold">
+                                    <td>Turno</td>
+                                    <td>Hora de Entrada</td>
+                                    <td>Hora de Saída</td>
+                                    <td>Hora Trabalhada</td>
+                                    <td>Observação</td>
+                                </tr>
+                                @foreach (var valor in _d)
+                                {
+                                    <tr>
+                                        <td>@valor.FK_JornadaColaborador.FK_Turno.descricao</td>
+                                        <td>@valor.entrada.ToShortTimeString()</td>
+                                        <td>@valor.saida.ToShortTimeString()</td>
+                                        <td>@(valor.saida.TimeOfDay - valor.entrada.TimeOfDay)</td>
+                                        <td>@(valor.Observacao)</td>
+                                    </tr>
+                                }
+                            </table>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+      
+    </table>
+
+
+
+               @if (horasMes > new TimeSpan(0))
+               {
+                   <p>Total de Horas: @Math.Round(horasMes.TotalHours, 2)</p>
+               }
+
+
+               <div class="progress progress-striped active">
+                   <div class="progress-bar" style="width:@percentual">
+                       <span>@percentual</span>
+                   </div>
+
+               </div>
+
+
+    @helper _horas_trabalhadas_dia(List<RegistroHoras.DATA.RegistroHoras> modelo, DateTime dia, List<RegistroHoras.DATA.classes.DiaNaoUtil> dias_nao_uteis)
+{
+
+    <span>
+        @{
+
+            
+        }
+    </span>
+
+}
+
+
