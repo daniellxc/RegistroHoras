@@ -18,3 +18,13 @@ C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.DATA\obj\Debug\Registro
 C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.DATA\obj\Debug\RegistroHoras.DATA.dll
 C:\Users\Daniel\Source\Repos\RegistroHoras\RegistroHoras.DATA\obj\Debug\RegistroHoras.DATA.pdb
 C:\Users\daniel.cardoso\Documents\Visual Studio 2013\Projects\RegistroHoras\RegistroHoras.DATA\obj\Debug\RegistroHoras.DATA.csprojResolveAssemblyReference.cache
+C:\Repositorios\RegistroHoras\RegistroHoras.DATA\bin\Debug\RegistroHoras.DATA.dll.config
+C:\Repositorios\RegistroHoras\RegistroHoras.DATA\bin\Debug\RegistroHoras.DATA.dll
+C:\Repositorios\RegistroHoras\RegistroHoras.DATA\bin\Debug\RegistroHoras.DATA.pdb
+C:\Repositorios\RegistroHoras\RegistroHoras.DATA\bin\Debug\EntityFramework.dll
+C:\Repositorios\RegistroHoras\RegistroHoras.DATA\bin\Debug\EntityFramework.SqlServer.dll
+C:\Repositorios\RegistroHoras\RegistroHoras.DATA\bin\Debug\EntityFramework.xml
+C:\Repositorios\RegistroHoras\RegistroHoras.DATA\bin\Debug\EntityFramework.SqlServer.xml
+C:\Repositorios\RegistroHoras\RegistroHoras.DATA\obj\Debug\RegistroHoras.DATA.csprojResolveAssemblyReference.cache
+C:\Repositorios\RegistroHoras\RegistroHoras.DATA\obj\Debug\RegistroHoras.DATA.dll
+C:\Repositorios\RegistroHoras\RegistroHoras.DATA\obj\Debug\RegistroHoras.DATA.pdb

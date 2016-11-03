@@ -111,7 +111,7 @@ namespace RegistroHoras.DATA.classes.business
         public int RegimeDoMes(int registroColaborador, int mes, int ano)
         {
             //total de dias uteis menos os feriados registrados
-             int totalDias = Util.TotalDiasUteisMes(mes, ano) - new DiaNaoUtilBO().GetDiasNaoUteisMes(mes, ano).Count;
+             int totalDias = Util.TotalDiasUteisMes(mes, ano);
              return totalDias * this.GetColaborador(registroColaborador).regimeDiario;
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RegistroHoras.DATA.classes.business;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace RegistroHoras.DATA.classes.acessorio
         {
             int dias = 0;
             int diasUteis = 0;
-
+            int feriadosMes = new DiaNaoUtilBO().GetDiasNaoUteisMes(mes, ano).Count();
             dias = DateTime.DaysInMonth(ano, mes);
 
             for (int i = 1; i < dias; i++)
@@ -26,7 +27,7 @@ namespace RegistroHoras.DATA.classes.acessorio
 
             }
 
-            return diasUteis;
+            return diasUteis - feriadosMes;
 
         }
 
