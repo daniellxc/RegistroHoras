@@ -7,11 +7,11 @@ namespace Testes
     [TestClass]
     public class UnitTest1
     {
-        [TestMethod]
-        public void TestarTotalDiasUteisMes()
-        {
-            int teste = new DiaNaoUtilBO().GetDiasNaoUteisMes(12, 2016).Count;
-            Assert.AreEqual(teste, 1);
-        }
+        //[TestMethod]
+        //public void TestarTotalDiasUteisMes()
+        //{
+        //    int teste = new DiaNaoUtilBO().GetDiasNaoUteisMes(12, 2016).Count;
+        //    Assert.AreEqual(teste, 1);
+        //}
     }
 }
